@@ -1,3 +1,4 @@
+<!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,58 +6,53 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Student Assessment</title>
     <link rel="stylesheet" href="styles.css">
-    <script src="https://script.google.com/macros/s/AKfycbw75ol93WXq9ZZxZ1ckPkyT7_Xcxtox_v22KPMZtBIWiosJFpD01muO-6WFcHZhCCnLvw/exec"></script>
 </head>
 <body>
-    <h1 class="text-center">Student Assessment</h1>
-    <form id="dataForm">
-        <div class="form-group">
+    <div class="container">
+        <h1>Student Assessment</h1>
+        <form id="dataForm">
             <label for="registerNumber">Register Number:</label>
-            <select id="registerNumber" class="form-control"></select>
-        </div>
-        <div class="form-group">
+            <select id="registerNumber"></select>
+            
             <label for="name">Name:</label>
-            <select id="name" class="form-control"></select>
-        </div>
-        <div class="form-group">
+            <select id="name"></select>
+            
             <label for="telephoneEtiquette">Telephone Etiquette:</label>
-            <input type="number" id="telephoneEtiquette" class="form-control">
-        </div>
-        <div class="form-group">
+            <input type="number" id="telephoneEtiquette">
+            
             <label for="audioListening">Audio Listening:</label>
-            <input type="number" id="audioListening" class="form-control">
-        </div>
-        <div class="form-group">
+            <input type="number" id="audioListening">
+            
             <label for="advancedAdzap">Advanced Adzap:</label>
-            <input type="number" id="advancedAdzap" class="form-control">
-        </div>
-        <div class="form-group">
+            <input type="number" id="advancedAdzap">
+            
             <label for="hrInterview">HR Interview:</label>
-            <input type="number" id="hrInterview" class="form-control">
-        </div>
-        <div class="form-group">
+            <input type="number" id="hrInterview">
+            
             <label for="powerPointPresentation">PowerPoint Presentation:</label>
-            <input type="number" id="powerPointPresentation" class="form-control">
-        </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
-        <div id="message" class="text-center mt-3"></div>
-    </form>
-    <table id="dataTable" class="table table-striped">
-        <thead>
-            <tr>
-                <th>S.No</th>
-                <th>Register Number</th>
-                <th>Name</th>
-                <th>Telephone Etiquette</th>
-                <th>Audio Listening</th>
-                <th>Advanced Adzap</th>
-                <th>HR Interview</th>
-                <th>PowerPoint Presentation</th>
-                <th>Total Marks</th>
-            </tr>
-        </thead>
-        <tbody></tbody>
-    </table>
+            <input type="number" id="powerPointPresentation">
+            
+            <button type="submit">Submit</button>
+            <p id="message"></p>
+        </form>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>S.No</th>
+                    <th>Register Number</th>
+                    <th>Name</th>
+                    <th>Telephone Etiquette</th>
+                    <th>Audio Listening</th>
+                    <th>Advanced Adzap</th>
+                    <th>HR Interview</th>
+                    <th>PowerPoint Presentation</th>
+                    <th>Total Marks</th>
+                </tr>
+            </thead>
+            <tbody id="dataTable"></tbody>
+        </table>
+    </div>
     <script src="script.js"></script>
 </body>
 </html>
