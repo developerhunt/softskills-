@@ -1,33 +1,29 @@
-document.addEventListener('DOMContentLoaded', function() {
-    fetchGoogleSheetData();
-    document.getElementById('dataForm').addEventListener('submit', submitForm);
+document.addEventListener("DOMContentLoaded", function() {
+    fetchData();
+    document.getElementById("dataForm").addEventListener("submit", submitForm);
 });
 
-function fetchGoogleSheetData() {
-    google.script.run.withSuccessHandler(populateFormOptions).getData();
+function fetchData() {
+    fetch("https://script.google.com/macros/s/AKfycbw75ol93WXq9ZZxZ1ckPkyT7_Xcxtox_v22KPMZtBIWiosJFpD01muO-6WFcHZhCCnLvw/exec")
+        .then(response => response.json())
+        .then(data => populateFormOptions(data))
+        .catch(error => console.error("Error fetching data:", error));
 }
 
 function populateFormOptions(data) {
-    const registerNumberSelect = document.getElementById('registerNumber');
-    const nameSelect = document.getElementById('name');
-    const tableBody = document.getElementById('dataTable').getElementsByTagName('tbody')[0];
-
-    data.forEach((row, index) => {
-        if (index === 0) return; // Skip header row
-
-        const registerNumberOption = document.createElement('option');
-        registerNumberOption.value = row[1];
-        registerNumberOption.textContent = row[1];
-        registerNumberSelect.appendChild(registerNumberOption);
-
-        const nameOption = document.createElement('option');
-        nameOption.value = row[2];
-        nameOption.textContent = row[2];
-        nameSelect.appendChild(nameOption);
-
-        const newRow = tableBody.insertRow();
+    const registerSelect = document.getElementById("registerNumber");
+    const nameSelect = document.getElementById("name");
+    const tableBody = document.getElementById("dataTable");
+    
+    data.slice(1).forEach((row, index) => {
+        let option1 = new Option(row[1], row[1]);
+        let option2 = new Option(row[2], row[2]);
+        registerSelect.add(option1);
+        nameSelect.add(option2);
+        
+        let newRow = tableBody.insertRow();
         row.forEach(cellData => {
-            const cell = newRow.insertCell();
+            let cell = newRow.insertCell();
             cell.textContent = cellData;
         });
     });
@@ -35,37 +31,26 @@ function populateFormOptions(data) {
 
 function submitForm(event) {
     event.preventDefault();
-
-    const registerNumber = document.getElementById('registerNumber').value;
-    const name = document.getElementById('name').value;
-    const telephoneEtiquette = document.getElementById('telephoneEtiquette').value;
-    const audioListening = document.getElementById('audioListening').value;
-    const advancedAdzap = document.getElementById('advancedAdzap').value;
-    const hrInterview = document.getElementById('hrInterview').value;
-    const powerPointPresentation = document.getElementById('powerPointPresentation').value;
-    const totalMarks = parseInt(telephoneEtiquette) + parseInt(audioListening) + parseInt(advancedAdzap) + parseInt(hrInterview) + parseInt(powerPointPresentation);
-
-    const newRow = [
-        '', // S.No will be calculated later
-        registerNumber,
-        name,
-        telephoneEtiquette,
-        audioListening,
-        advancedAdzap,
-        hrInterview,
-        powerPointPresentation,
-        totalMarks
-    ];
-
-    google.script.run.withSuccessHandler(() => {
-        addRowToTable(newRow);
-        showMessage('Data submitted successfully!', 'success');
-    }).setData(newRow);
+    
+    const formData = {
+        registerNumber: document.getElementById("registerNumber").value,
+        name: document.getElementById("name").value,
+        telephoneEtiquette: document.getElementById("telephoneEtiquette").value,
+        audioListening: document.getElementById("audioListening").value,
+        advancedAdzap: document.getElementById("advancedAdzap").value,
+        hrInterview: document.getElementById("hrInterview").value,
+        powerPointPresentation: document.getElementById("powerPointPresentation").value
+    };
+    
+    fetch("https://script.google.com/macros/s/AKfycbw75ol93WXq9ZZxZ1ckPkyT7_Xcxtox_v22KPMZtBIWiosJFpD01muO-6WFcHZhCCnLvw/exec", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData)
+    })
+    .then(response => response.text())
+    .then(message => {
+        document.getElementById("message").textContent = message;
+        fetchData();
+    })
+    .catch(error => console.error("Error submitting data:", error));
 }
-
-function addRowToTable(newRow) {
-    const tableBody = document.getElementById('dataTable').getElementsByTagName('tbody')[0];
-    const newRowElement = tableBody.insertRow();
-
-    newRow.forEach((cellData, index) => {
-        const cell = newRowElement.insert
