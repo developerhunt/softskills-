@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Assessment</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1 class="text-center">Student Assessment</h1>
+    <form id="dataForm">
+        <div class="form-group">
+            <label for="registerNumber">Register Number:</label>
+            <select id="registerNumber" class="form-control"></select>
+        </div>
+        <div class="form-group">
+            <label for="name">Name:</label>
+            <select id="name" class="form-control"></select>
+        </div>
+        <div class="form-group">
+            <label for="telephoneEtiquette">Telephone Etiquette:</label>
+            <input type="number" id="telephoneEtiquette" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="audioListening">Audio Listening:</label>
+            <input type="number" id="audioListening" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="advancedAdzap">Advanced Adzap:</label>
+            <input type="number" id="advancedAdzap" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="hrInterview">HR Interview:</label>
+            <input type="number" id="hrInterview" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="powerPointPresentation">PowerPoint Presentation:</label>
+            <input type="number" id="powerPointPresentation" class="form-control">
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+        <div id="message" class="text-center mt-3"></div>
+    </form>
+    <table id="dataTable" class="table table-striped">
+        <thead>
+            <tr>
+                <th>S.No</th>
+                <th>Register Number</th>
+                <th>Name</th>
+                <th>Telephone Etiquette</th>
+                <th>Audio Listening</th>
+                <th>Advanced Adzap</th>
+                <th>HR Interview</th>
+                <th>PowerPoint Presentation</th>
+                <th>Total Marks</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+    <script src="script.js"></script>
+</body>
+</html>
