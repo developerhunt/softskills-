@@ -68,17 +68,4 @@ function addRowToTable(newRow) {
     const newRowElement = tableBody.insertRow();
 
     newRow.forEach((cellData, index) => {
-        const cell = newRowElement.insertCell(index);
-        cell.textContent = cellData;
-    });
-
-    // Calculate and set S.No
-    newRowElement.cells[0].textContent = tableBody.rows.length;
-}
-
-function showMessage(message, type) {
-    const messageDiv = document.getElementById('message');
-    messageDiv.textContent = message;
-    messageDiv.className = `alert alert-${type}`;
-    setTimeout(() => { messageDiv.textContent = ''; messageDiv.className = ''; }, 3000);
-}
+        const cell = newRowElement.insert
